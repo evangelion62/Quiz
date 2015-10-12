@@ -1,0 +1,75 @@
+<?php
+switch ($action) {
+	case 'index':
+		header('Location: ?controler=question&action=list');
+	break;
+	case 'add':
+		if(isset($_POST['question'])&&isset($_POST['rep'])){
+
+			$questionManager = new QuestionManager($bdd);
+			
+			$question = new Question($_POST);
+			$questionManager->add($question);
+			header('Location: ?controler=question&action=list');
+		}else{
+			$themeManager = new ThemeManager($bdd);
+			$themes = $themeManager->getList();
+			ob_start();
+			require_once 'view/question/addQuestion.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}
+	break;
+		
+	case 'list':
+		$questionManager = new QuestionManager($bdd);
+		$questions=$questionManager->getList();
+		$themeManager = new ThemeManager($bdd);
+		$themes = $themeManager ->getList();
+		ob_start();
+		require_once 'view/question/listQuestion.php';
+		$content = ob_get_contents();
+		ob_end_clean();
+		require_once 'view/layout/layout.php';
+	break;
+	
+	case 'update':
+		if(isset($_GET['id'])&&!isset($_POST['question'])&&!isset($_POST['rep'])){
+			$questionManager = new QuestionManager($bdd);
+			$question = $questionManager->get((int)$_GET['id']);
+			$themeManager = new ThemeManager($bdd);
+			$themes = $themeManager->getList();
+			ob_start();
+			require_once 'view/question/updateQuestion.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}elseif (isset($_POST['question'])&&isset($_POST['rep'])){
+			$questionManager = new QuestionManager($bdd);
+			$question = new Question($_POST);
+			$questionManager->update($question);
+			header('Location: ?controler=question&action=list');
+		}else{
+			header('Location: ?controler=question&action=list');
+		}
+	
+	break;
+	
+	case 'delete':
+		if(isset($_GET['id'])){
+			$questionManager = new QuestionManager($bdd);
+			$questionManager->delete($_GET['id']);
+			header('Location: ?controler=question&action=list');
+		}else{
+			header('Location: ?controler=question&action=list');
+		}
+	break;
+	
+	case 'csvImport':
+		echo'csvImport pas encore implémanté';
+	break;
+	default:
+		header('Location: ?controler=question&action=list');
+	break;
+}
