@@ -22,6 +22,15 @@
   <body>
   	<?php require_once 'navbar.php';?>
   	<div class="container-fluid">
+  	
+  	<!-- debug -->
+  	session
+	<pre><?php print_r($_SESSION)?></pre>
+	get
+	<pre><?php print_r($_GET)?></pre>
+	post
+	<pre><?php print_r($_POST)?></pre>
+	
     <?php if(isset($content)){echo $content;}?>
 	</div>
 	

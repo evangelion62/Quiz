@@ -42,8 +42,9 @@ switch ($action){
 			
 			if(isset($_SESSION['lastquestion'])){//seconde question et les suivante
 				if ($_SESSION['lastquestion']<$_SESSION['nb_questions']){
-
-					$question = $questions[$_SESSION['lastquestion']+1];
+					
+					
+					$question = $questions[$_SESSION['lastquestion']];
 					
 					ob_start();
 					require_once 'view/game/question.php';
@@ -56,6 +57,7 @@ switch ($action){
 				}
 			}else{//premiére question
 				$question = $questions[0];
+				$_SESSION['lastquestion']=0;
 				
 				ob_start();
 				require_once 'view/game/question.php';
@@ -70,9 +72,20 @@ switch ($action){
 	break;
 	
 	case 'checkrep':
+		if (isset($_POST['rep']) && isset($_POST['qid'])){
+			$_SESSION['userrep'][$_POST['qid']]=$_POST['rep'];
+			$_SESSION['lastquestion']+=1;
+			header('Location: ?controler=game&action=nextquestion');
+		}else{
+			header('Location: ?controler=index');
+		}
 	break;
 	
 	case 'quizzend':
-		
+		unset($_SESSION['lastquestion']);
+		unset($_SESSION['nb_questions']);
+		unset($_SESSION['themeid']);
+		unset($_SESSION['userrep']);
+		header('Location: ?controler=index');
 	break;
 }
