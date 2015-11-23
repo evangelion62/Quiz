@@ -1,6 +1,8 @@
 <h1>Liste de toutes les question</h1>
 <a href="?controler=question&action=add"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une nouvelle question</a>
-<a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importé un fichier de Questions (au format CSV)</a>
+<a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importé</a>
+<a href="?controler=csv&action=questexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporté</a>
+ <br><br>
  <table class="table table-bordered">
   <tr>
     <th>Question</th>

@@ -20,8 +20,8 @@
           <ul class="dropdown-menu">
             <li><a href="?controler=theme&action=list">Thémes</a></li>
             <li><a href="?controler=question&action=list">Question</a></li>
-<!--             <li role="separator" class="divider"></li> -->
-<!--             <li><a href="#">Separated link</a></li> -->
+            <li role="separator" class="divider"></li>
+            <li><a href="?controler=csv&action=upload">Upload csv</a></li>
 <!--             <li role="separator" class="divider"></li> -->
 <!--             <li><a href="#">One more separated link</a></li> -->
           </ul>
