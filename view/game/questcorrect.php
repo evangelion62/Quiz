@@ -8,7 +8,7 @@
 			if ($userrep == $goodrep){
 				echo '<h3><span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> Question : '.$question->question().'</h3>';
 				echo '<p class="bg-success">';
-				echo 'Votre réponse : '.$question->$userrep();
+				echo 'Réponse correcte : '.$question->$userrep();
 				echo '</p>';
 			}else{
 				echo '<h3><span class="glyphicon glyphicon-remove text-danger" aria-hidden="true"></span> Question : '.$question->question().'</h3>';

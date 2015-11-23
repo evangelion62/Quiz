@@ -8,8 +8,10 @@
 	}?>
 	</select>
 </div>
-<input class="btn btn-default" type="submit" value="Selectioner">
+<input class="btn btn-default" type="submit" value="Importer">
 </form>
+</div>
+<div class="jumbotron">
 <h1>Envoyé un nouveau fichier</h1>
 <form action="?controler=csv&action=upload" method="post" enctype="multipart/form-data">
 	<div class="form-group">
