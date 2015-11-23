@@ -53,9 +53,9 @@ switch ($action){
 					require_once 'view/layout/layout.php';
 					
 				}else{//fin du quizz
-					header('Location: ?controler=game&action=quizzend');
+					header('Location: ?controler=game&action=correction&mode=all');
 				}
-			}else{//premi�re question
+			}else{//premiére question
 				$question = $questions[0];
 				$_SESSION['lastquestion']=0;
 				
@@ -77,7 +77,36 @@ switch ($action){
 			$_SESSION['lastquestion']+=1;
 			header('Location: ?controler=game&action=nextquestion');
 		}else{
-			header('Location: ?controler=index');
+			header('Location: ?controler=game&action=nextquestion');
+		}
+	break;
+	
+	case 'correction':
+		if (isset($_GET['mode']) && isset($_SESSION['userrep']) && isset($_SESSION['themeid'])){
+			if ($_GET['mode'] == 'all'){//correction de tous le qcm
+				$questionManager = new QuestionManager($bdd);
+				$questions = $questionManager->get($_SESSION['themeid'],'themeid',TRUE);
+				$goodRepCmpt = 0;
+				$nb_questions = count($questions);
+				
+				foreach ($questions as $question){
+					if (isset($_SESSION['userrep'][$question->id()])){
+						$userrep  = $_SESSION['userrep'][$question->id()];
+						$goodrep  = $question->rep();
+						if ($userrep == $goodrep){
+							$goodRepCmpt++;
+						}
+					}
+				}
+				
+				ob_start();
+				require_once 'view/game/questcorrect.php';
+				$content = ob_get_contents();
+				ob_end_clean();
+				require_once 'view/layout/layout.php';
+			}elseif ($_GET['mode'] == 'one'){//correction de la derniére question
+				
+			}
 		}
 	break;
 	

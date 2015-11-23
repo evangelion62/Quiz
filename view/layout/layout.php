@@ -23,7 +23,13 @@
   	<?php require_once 'navbar.php';?>
   	<div class="container-fluid">
   	
-  	<!-- debug -->
+    <?php if(isset($content)){echo $content;}?>
+	</div>
+	
+	<hr>
+	<footer class="footer">
+        <p>&copy; Ronger Sébastien 2015</p>
+        <!-- debug -->
   	session
 	<pre><?php print_r($_SESSION)?></pre>
 	get
@@ -31,12 +37,6 @@
 	post
 	<pre><?php print_r($_POST)?></pre>
 	
-    <?php if(isset($content)){echo $content;}?>
-	</div>
-	
-	<hr>
-	<footer class="footer">
-        <p>&copy; Ronger Sébastien 2015</p>
       </footer>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
