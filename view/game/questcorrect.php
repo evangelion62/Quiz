@@ -1,6 +1,6 @@
 <div class="jumbotron">
 <a href="?controler=game&action=quizzend" class="btn btn-primary btn-lg" >Terminer le Quiz !</a>
-<h2>Score : <?php echo $goodRepCmpt.'/'.$nb_questions;?></h2>
+<h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Score : <?php echo $goodRepCmpt.'/'.$nb_questions;?></h2>
 <?php foreach ($questions as $question){
 		if (isset($_SESSION['userrep'][$question->id()])){
 			$userrep  = $_SESSION['userrep'][$question->id()];
