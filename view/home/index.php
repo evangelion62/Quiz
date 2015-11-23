@@ -1,4 +1,5 @@
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+<div class="col-lg-2 col-md-1"></div>
+<div id="carousel-example-generic" class="carousel slide col-lg-8 col-md-10" data-ride="carousel">
   <!-- Indicators -->
   <ol class="carousel-indicators">
   <?php 
