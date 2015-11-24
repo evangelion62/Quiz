@@ -3,7 +3,7 @@
 <a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importé</a>
 <a href="?controler=csv&action=questexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporté</a>
  <br><br>
- <table class="table table-bordered">
+ <table class="table table-bordered" style="background-color: white;">
   <tr>
     <th>Question</th>
     <th>Bonne Réponse</th>

@@ -1,6 +1,6 @@
  <h1>Listes des themes de Quiz</h1>
  <a href="?controler=theme&action=add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un nouveau theme</a>
- <table class="table table-bordered">
+ <table class="table table-bordered" style="background-color: white;">
   <tr>
     <th>theme</th>
     <th>id</th>
