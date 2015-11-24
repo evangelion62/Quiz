@@ -2,7 +2,7 @@
 application php pour créer et jouer des quiz
 
 ##Installation
-- télécharger la derniére release [ici](https://github.com/evangelion62/Quiz/archive/0.1.0.zip)
+- télécharger la derniére release [ici](https://github.com/evangelion62/Quiz/archive/0.1.1.zip)
 - déziper l'archive à la racine de votre serveur web (www)
 - éditer le fichier config/config.php
 à la ligne 5 :
