@@ -19,7 +19,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <body>
+  <body style="background-image: url('web/img/gplaypattern_@2X.png');">
   	<?php require_once 'navbar.php';?>
   	<div class="container-fluid">
   	

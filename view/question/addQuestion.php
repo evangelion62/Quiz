@@ -43,13 +43,13 @@
 			<div class="col-sm-10">
 				<select id='rep 'name="rep" class="form-control">
 			
-			    	<option value="rep1">rep1</option>
+			    	<option value="rep1">reponse 1</option>
 			
-			    	<option value="rep2">rep2</option>
+			    	<option value="rep2">reponse 2</option>
 			
-			    	<option value="rep3">rep3</option>
+			    	<option value="rep3">reponse 3</option>
 			
-			    	<option value="rep4">rep4</option>
+			    	<option value="rep4">reponse 4</option>
 				</select>
 			</div>
 		</div>

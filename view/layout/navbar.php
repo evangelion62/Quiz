@@ -19,7 +19,8 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">parametres <span class="caret"></span></a>
           <ul class="dropdown-menu">
             <li><a href="?controler=theme&action=list">Thémes</a></li>
-            <li><a href="?controler=question&action=list">Question</a></li>
+            <li><a href="?controler=question&action=list">Questions</a></li>
+            <li><a href="?controler=user&action=list">Utilisateurs</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="?controler=csv&action=upload">Upload csv</a></li>
 <!--             <li role="separator" class="divider"></li> -->
@@ -27,12 +28,21 @@
           </ul>
         </li>
       </ul>
-<!--       <form class="navbar-form navbar-left" role="search"> -->
-<!--         <div class="form-group"> -->
-<!--           <input type="text" class="form-control" placeholder="Search"> -->
-<!--         </div> -->
-<!--         <button type="submit" class="btn btn-default">Submit</button> -->
-<!--       </form> -->
+      <?php if (isset($_SESSION['token'])){?>
+      <form class="navbar-form navbar-right" action="?controler=user&action=logout" method="post">
+        <button type="submit" class="btn btn-default">Déconnexion</button>
+      </form>
+      <?php }else{?>
+      <form class="navbar-form navbar-right" action="?controler=user&action=login" method="post">
+        <div class="form-group">
+          <input type="text" class="form-control" id="login" name="login" placeholder="Identifiant">
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="pass" name="pass" placeholder="Mot de passe">
+        </div>
+        <button type="submit" class="btn btn-default">Connexion</button>
+      </form>
+      <?php }?>
 <!--       <ul class="nav navbar-nav navbar-right"> -->
 <!--         <li><a href="#">Link</a></li> -->
 <!--         <li class="dropdown"> -->
