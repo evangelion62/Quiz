@@ -23,24 +23,30 @@ abstract class EntityManager {
 			
 			$propertiesStr = '';
 			foreach ($properties as $keyName => $dbParams) {
-				$propertiesStr = $propertiesStr.'`'.$keyName.'` '.$dbParams['TYPE'].'('.$dbParams['LEN'].') '.$dbParams['NULL_OR_NOT'].' COMMENT \''.$dbParams['COMMENT'].'\',';
+				if (!empty($dbParams['LEN'])){
+					$propertiesStr = $propertiesStr.'`'.$keyName.'` '.$dbParams['TYPE'].'('.$dbParams['LEN'].') '.$dbParams['NULL_OR_NOT'].' COMMENT \''.$dbParams['COMMENT'].'\',';
+				}else{
+					$propertiesStr = $propertiesStr.'`'.$keyName.'` '.$dbParams['TYPE'].' '.$dbParams['NULL_OR_NOT'].' COMMENT \''.$dbParams['COMMENT'].'\',';
+				}
 			}
+			
 			$key = '';
 			foreach ($properties as $keyName => $dbParams){
 				if (!empty($dbParams['KEY'])){
 					$key = $key.$dbParams['KEY'].' `'.$keyName.'` (`'.$keyName.'`),';
 				}
 			}
-			$q = $this->_db->prepare(
-				"CREATE TABLE IF NOT EXISTS `".$table."` (
+			
+			$chaine = "CREATE TABLE IF NOT EXISTS `".$table."` (
 				id int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT 'idex primaire',
 				".$propertiesStr.$key."
 				PRIMARY KEY (id)
-				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1"
-			);
+				) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1";
+			
+			$q = $this->_db->prepare($chaine);
 			$result = $q->execute();
 			$q->closeCursor();
-			return $result;
+			return $chaine;
 		}
 	}
 	
