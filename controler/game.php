@@ -87,16 +87,23 @@ switch ($action){
 				$questionManager = new QuestionManager($bdd);
 				$questions = $questionManager->get($_SESSION['themeid'],'themeid',TRUE);
 				$goodRepCmpt = 0;
+				$nbUserRep = 0;
+				$questfinish = false;
 				$nb_questions = count($questions);
 				
 				foreach ($questions as $question){
 					if (isset($_SESSION['userrep'][$question->id()])){
+						$nbUserRep++;
 						$userrep  = $_SESSION['userrep'][$question->id()];
 						$goodrep  = $question->rep();
 						if ($userrep == $goodrep){
 							$goodRepCmpt++;
 						}
 					}
+				}
+				
+				if ($nbUserRep>=$nb_questions){
+					$questfinish = true;
 				}
 				
 				ob_start();

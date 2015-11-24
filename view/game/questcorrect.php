@@ -1,5 +1,9 @@
 <div class="jumbotron">
-<a href="?controler=game&action=quizzend" class="btn btn-primary btn-lg" >Terminer le Quiz !</a>
+<?php if (!$questfinish){?>
+<a href="?controler=game&action=nextquestion" class="btn btn-primary btn-lg" >Reprendre le Quiz !</a>
+<?php }else{?>
+<h1>Quiz Terminer</h1>
+<?php }?>
 <h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Score : <?php echo $goodRepCmpt.'/'.$nb_questions;?></h2>
 <?php foreach ($questions as $question){
 		if (isset($_SESSION['userrep'][$question->id()])){
