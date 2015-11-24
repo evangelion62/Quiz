@@ -15,6 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="?controler=game">Play</a></li>
+        <?php if (isset($_SESSION['token'])){?>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">parametres <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -27,6 +28,7 @@
 <!--             <li><a href="#">One more separated link</a></li> -->
           </ul>
         </li>
+        <?php }?>
       </ul>
       <?php if (isset($_SESSION['token'])){?>
       <form class="navbar-form navbar-right" action="?controler=user&action=logout" method="post">

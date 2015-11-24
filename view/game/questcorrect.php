@@ -1,6 +1,6 @@
 <div class="jumbotron">
 <?php if (!$questfinish){?>
-<a href="?controler=game&action=nextquestion" class="btn btn-primary btn-lg" >Reprendre le Quiz !</a>
+<a href="?controler=game&action=nextquestion" class="btn btn-success btn-lg" >Reprendre le Quiz !</a>
 <?php }else{?>
 <h1>Quiz Terminer</h1>
 <?php }?>
