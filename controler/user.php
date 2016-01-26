@@ -95,12 +95,46 @@ if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
 	case 'list':
 		$userManager = new UserManager($bdd);
 		$users = $userManager->getList();
+		$userRightsManager = new UserRightsManager($bdd);
+		$usersRights = $userRightsManager->getList();
 		
 		ob_start();
 		require_once 'view/user/listuser.php';
 		$content = ob_get_contents();
 		ob_end_clean();
 		require_once 'view/layout/layout.php';
+	break;
+	
+	case 'adminlvl':
+		if (!empty($_POST['userid'])&&!empty($_POST['adminlvl'])){
+			$userRights = new UserRights($_POST);
+			$userRightsManager = new UserRightsManager($bdd);
+			
+			if ($userRightsManager->get($_POST['userid'],'userid')){
+				$userRights = $userRightsManager->get($_POST['userid'],'userid');
+				$userRights->setAdminlvl($_POST['adminlvl']);
+				$userRightsManager->update($userRights);
+				
+				header('Location: ?controler=user&action=list');
+			}else{
+				
+				$userRightsManager->add($userRights);
+				
+				header('Location: ?controler=user&action=list');
+			}
+		}elseif(!empty($_GET['userid'])){
+			$userManager = new UserManager($bdd);
+			$userRightsManager = new UserRightsManager($bdd);
+			
+			$user = $userManager->get($_GET['userid']);
+			$userRights = $userRightsManager->get($_GET['userid'],'userid');
+			
+			ob_start();
+			require_once 'view/user/useradminlvl.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}
 	break;
 	
 	default:

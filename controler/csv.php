@@ -1,4 +1,5 @@
 <?php
+
 switch ($action) {
 	case 'questexport':
 		$questionManager = new QuestionManager($bdd);

@@ -8,16 +8,21 @@
     <th>Login</th>
     <th>Mot de passe (hash)</th>
     <th>Suprimer l'utilisateur</th>
+    <th>Niveau d'administration</th>
   </tr>
   <?php
-  foreach ($users as $user) {
-  	echo '
+  foreach ($users as $user) {?>
   <tr>
-    <td><a href="?controler=user&action=edit&id='.$user->id().'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> '.$user->login().'</a></td>
-    <td>'.$user->pass().'</td>
-    <td><a href="?controler=user&action=del&id='.$user->id().'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer</a></td>
+    <td><a href="?controler=user&action=edit&id=<?php echo $user->id()?>"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> <?php echo $user->login()?></a></td>
+    <td><?php echo $user->pass()?></td>
+    <td><a href="?controler=user&action=del&id=<?php echo $user->id()?>"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer</a></td>
+	<td><?php foreach ($usersRights as $userRights){
+		if ($userRights->userid() == $user->id()){
+			echo '<a href="?controler=user&action=adminlvl&userid='.$user->id().'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> '.$userRights->adminlvl().'</a>';
+		}
+	}?></td>
   </tr>
-    		';
+  <?php 
   } 
   ?>
 </table> 
