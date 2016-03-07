@@ -23,6 +23,12 @@
   	<?php require_once 'navbar.php';?>
   	<div class="container-fluid">
   	
+  	<?php if(!empty($userError)){
+  		foreach ($userError as $error){
+  			echo '<div class="alert alert-danger" role="alert">'.$error.'</div>';
+  		}
+  	}?>
+  	
     <?php if(isset($content)){echo $content;}?>
 	</div>
 	

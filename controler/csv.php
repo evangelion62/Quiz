@@ -1,5 +1,8 @@
 <?php
 
+$adminLvlThisControler=4;
+require_once 'lib/checkRights.php';
+
 switch ($action) {
 	case 'questexport':
 		$questionManager = new QuestionManager($bdd);

@@ -39,11 +39,15 @@ switch ($action) {
 	break;
 	
 	case 'logout':
-		unset($_SESSION['token']);
+		$_SESSION = array();
 		header('Location: ?controler=index');
 	break;
 	
 	case 'add':
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
 		if (isset($_POST['login'])&&isset($_POST['pass'])){
 			$_POST['pass'] = sha1($_POST['pass']);
 			$userManager = new UserManager($bdd);
@@ -61,6 +65,10 @@ switch ($action) {
 	break;
 	
 	case 'del':
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
 		if(isset($_GET['id'])){
 			$userManager = new UserManager($bdd);
 			
@@ -72,7 +80,11 @@ switch ($action) {
 	break;
 	
 	case 'edit':
-if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
+		if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
 			$_POST['pass'] = sha1 ($_POST['pass']);
 			$userManager = new UserManager($bdd);
 			$user = new User($_POST);
@@ -93,6 +105,10 @@ if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
 	break;
 	
 	case 'list':
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
 		$userManager = new UserManager($bdd);
 		$users = $userManager->getList();
 		$userRightsManager = new UserRightsManager($bdd);
@@ -106,6 +122,10 @@ if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
 	break;
 	
 	case 'adminlvl':
+		
+		$adminLvlThisControler=4;
+		require_once 'lib/checkRights.php';
+		
 		if (!empty($_POST['userid'])&&!empty($_POST['adminlvl'])){
 			$userRights = new UserRights($_POST);
 			$userRightsManager = new UserRightsManager($bdd);
@@ -135,6 +155,16 @@ if (isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['id'])){
 			ob_end_clean();
 			require_once 'view/layout/layout.php';
 		}
+	break;
+	
+	case 'logoutForced' :
+		$_SESSION = array();
+		$userError[]= 'token invalide : veuillez vous reconnecter';
+		ob_start();
+		require_once 'view/user/logoutforced.php';
+		$content = ob_get_contents();
+		ob_end_clean();
+		require_once 'view/layout/layout.php';
 	break;
 	
 	default:

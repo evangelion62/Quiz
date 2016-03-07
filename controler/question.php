@@ -1,9 +1,17 @@
 <?php
 switch ($action) {
 	case 'index':
+		$adminLvlThisControler=1;
+		require_once 'lib/checkRights.php';
+		
 		header('Location: ?controler=question&action=list');
 	break;
+	
 	case 'add':
+		
+		$adminLvlThisControler=2;
+		require_once 'lib/checkRights.php';
+		
 		if(isset($_POST['question'])&&isset($_POST['rep'])){
 
 			$questionManager = new QuestionManager($bdd);
@@ -23,6 +31,10 @@ switch ($action) {
 	break;
 		
 	case 'list':
+		
+		$adminLvlThisControler=1;
+		require_once 'lib/checkRights.php';
+		
 		$questionManager = new QuestionManager($bdd);
 		$questions=$questionManager->getList();
 		$themeManager = new ThemeManager($bdd);
@@ -35,6 +47,10 @@ switch ($action) {
 	break;
 	
 	case 'update':
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
 		if(isset($_GET['id'])&&!isset($_POST['question'])&&!isset($_POST['rep'])){
 			$questionManager = new QuestionManager($bdd);
 			$question = $questionManager->get((int)$_GET['id']);
@@ -57,6 +73,10 @@ switch ($action) {
 	break;
 	
 	case 'delete':
+		
+		$adminLvlThisControler=3;
+		require_once 'lib/checkRights.php';
+		
 		if(isset($_GET['id'])){
 			$questionManager = new QuestionManager($bdd);
 			$questionManager->delete($_GET['id']);
@@ -67,6 +87,10 @@ switch ($action) {
 	break;
 	
 	case 'csvImport':
+		
+		$adminLvlThisControler=4;
+		require_once 'lib/checkRights.php';
+		
 		if (isset($_POST['file'])){
 			if ($file = fopen('web/csv/'.$_POST['file'],'r')){
 				$questionManager = new QuestionManager($bdd);
