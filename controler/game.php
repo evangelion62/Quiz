@@ -76,7 +76,8 @@ switch ($action){
 		if (isset($_POST['rep']) && isset($_POST['qid'])){
 			$_SESSION['userrep'][$_POST['qid']]=$_POST['rep'];
 			$_SESSION['lastquestion']+=1;
-			header('Location: ?controler=game&action=nextquestion');
+			$_SESSION['lastquestionId']=$_POST['qid'];
+			header('Location: ?controler=game&action=correction&mode=one');
 		}else{
 			header('Location: ?controler=game&action=nextquestion');
 		}
@@ -113,7 +114,33 @@ switch ($action){
 				ob_end_clean();
 				require_once 'view/layout/layout.php';
 			}elseif ($_GET['mode'] == 'one'){//correction de la derniére question
+				$questionManager = new QuestionManager($bdd);
+				$questions = $questionManager->get($_SESSION['themeid'],'themeid',TRUE);
+				$goodRepCmpt = 0;
+				$nbUserRep = 0;
+				$questfinish = false;
+				$nb_questions = count($questions);
 				
+				foreach ($questions as $question){
+					if (isset($_SESSION['userrep'][$question->id()])){
+						$nbUserRep++;
+						$userrep  = $_SESSION['userrep'][$question->id()];
+						$goodrep  = $question->rep();
+						if ($userrep == $goodrep){
+							$goodRepCmpt++;
+						}
+					}
+				}
+				
+				if ($nbUserRep>=$nb_questions){
+					header('Location: ?controler=game&action=correction&mode=all');
+				}
+				
+				ob_start();
+				require_once 'view/game/questcorrectone.php';
+				$content = ob_get_contents();
+				ob_end_clean();
+				require_once 'view/layout/layout.php';
 			}
 		}
 	break;

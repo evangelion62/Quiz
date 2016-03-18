@@ -29,7 +29,7 @@
 	</label>
 	
 	<input id="qid" name="qid" type="hidden" value="<?php echo $question->id()?>"><br><br>
-	<input class="btn btn-primary btn-lg" type="submit" value="Question suivante">
+	<input class="btn btn-primary btn-lg" type="submit" value="Réponse !">
 </form>
 <br>
 <a href="?controler=game&action=correction&mode=all" class="btn btn-warning btn-lg" >Terminer le Quiz !</a>

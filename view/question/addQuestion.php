@@ -1,3 +1,4 @@
+<script src="lib/ckeditor/ckeditor.js"></script>
 <div class="jumbotron">
 	<h1>ajout de question</h1>
 	<br>
@@ -5,7 +6,8 @@
 		<div class="form-group">
 			<label for="question" class="col-sm-2 control-label">Question</label>
 			<div class="col-sm-10">
-				<textarea class="form-control"  rows="3" id="question" name="question"></textarea>
+				<textarea name="question" id="question" rows="10" cols="80">
+            	</textarea>
 			</div>
 		</div>
 		<br>
@@ -73,5 +75,10 @@
 				<input type="submit" class="btn btn-default" value="Ajouter">
 			</div>
 		</div>
+		<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'question' );
+        </script>
 	</form>
 </div>
