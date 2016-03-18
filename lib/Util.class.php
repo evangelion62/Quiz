@@ -16,6 +16,9 @@ class Util {
 					exit();
 				}
 			}
+		}else{
+			header('Location: ?controler=user&action=logoutForced');
+			exit();
 		}
 		
 	}
