@@ -167,6 +167,38 @@ switch ($action) {
 		require_once 'view/layout/layout.php';
 	break;
 	
+	case 'csvImport':
+	
+		$adminLvlThisControler=4;
+		require_once 'lib/checkRights.php';
+	
+		if (isset($_POST['file'])){
+			if ($file = fopen('web/csv/'.$_POST['file'],'r')){
+				$userManager = new UserManager($bdd);
+				$user = new User(array());
+				while ($ligne = fgetcsv($file,0,';','"')){
+					$username = strtolower($ligne['1']);
+					$username = $username.'.'.strtolower($ligne['2']);
+					$username = utf8_encode($username);
+					$user->setLogin($username);
+					$pass = str_replace ('/','',$ligne['3']);
+					$user->setPass(sha1($pass));
+					$userManager->add($user);
+				}
+				header('Location: ?controler=user&action=list');
+			}
+		}else{
+			$directory = 'web/csv/';
+			$files = array_diff(scandir($directory), array('..', '.'));
+				
+			ob_start();
+			require_once 'view/user/csvimport.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}
+	break;
+		
 	default:
 		;
 	break;
