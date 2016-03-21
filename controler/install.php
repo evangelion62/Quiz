@@ -9,7 +9,7 @@ switch ($action) {
 		$themeManager->createTable();
 		$userManager = new UserManager($bdd);
 		$userManager->createTable();
-		$userRightsManager = new UserrightsManager($bdd);
+		$userRightsManager = new UserRightsManager($bdd);
 		$userRightsManager->createTable();
 		$tokenManager = new TokenManager($bdd);
 		$tokenManager->createTable();
