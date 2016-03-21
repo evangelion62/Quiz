@@ -1,5 +1,5 @@
 <?php
-//connection � la bdd
+//connection � la bdd
 try
 {
 	$bdd = new PDO('mysql:host=localhost;dbname=test','root','');
@@ -13,12 +13,12 @@ catch (Exception $e)
 //autoload
 function chargerClasse($classe)
 {
-	require_once 'model/'.$classe . '.class.php'; // On inclut la classe correspondante au paramètre passé.
+	require_once 'model/'.$classe. '.class.php'; // On inclut la classe correspondante au paramètre passé.
 }
 
 spl_autoload_register('chargerClasse');
 
-//d�finition des varriable controler et action
+//d�finition des varriable controler et action
 if (!empty($_GET['controler'])) {
 	$_GET['controler']=stripslashes($_GET['controler']);
 	$_GET['controler']=htmlspecialchars($_GET['controler']);
