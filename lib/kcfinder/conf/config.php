@@ -57,7 +57,7 @@ return array(
 
 // DISABLE / ENABLE SETTINGS
 
-    'denyZipDownload' => true,
+    'denyZipDownload' => false,
     'denyUpdateCheck' => false,
     'denyExtensionRename' => true,
 
