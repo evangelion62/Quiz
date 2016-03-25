@@ -24,7 +24,7 @@
             <li><a href="?controler=user&action=list">Utilisateurs</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="?controler=csv&action=upload">Upload csv</a></li>
-            <li><a href="lib/ckfinder/samples/full-page-open.html" target="blank">Explorer de fichier</a></li>
+            <li><a href="lib/kcfinder/browse.php?type=files" target="blank">Explorer de fichier</a></li>
             
 <!--             <li role="separator" class="divider"></li> -->
 <!--             <li><a href="#">One more separated link</a></li> -->

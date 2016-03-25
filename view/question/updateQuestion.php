@@ -1,3 +1,4 @@
+<script src="lib/ckeditor/ckeditor.js"></script>
 <div class="jumbotron">
 	<div class="col-sm-2"></div>
 	<div class="col-sm-10">
@@ -71,5 +72,10 @@
 				<input type="submit" class="btn btn-default" value="Editer">
 			</div>
 		</div>
+		<script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'question' );
+        </script>
 	</form>
 </div>
