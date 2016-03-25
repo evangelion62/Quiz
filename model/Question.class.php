@@ -46,6 +46,12 @@ class Question extends Entity{
 							Entity::NULL_OR_NOT=>NULL,
 							Entity::COMMENT=>'theme'
 					),
+					'userid'=>array(
+							Entity::TYPE=>Entity::INT,
+							Entity::LEN=>11,
+							Entity::NULL_OR_NOT=>NULL,
+							Entity::COMMENT=>'user'
+					),
 			),
 	);
 	//attributs
@@ -56,4 +62,5 @@ class Question extends Entity{
 	protected $_rep4;
 	protected $_rep;
 	protected $_themeid;
+	protected $_userid;
 }

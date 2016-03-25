@@ -12,11 +12,16 @@ switch ($action) {
 		$adminLvlThisControler=2;
 		require_once 'lib/checkRights.php';
 		
+		$util = new Util();
+		$userid = $util->getUserId($_SESSION['token'], $bdd);
+		
 		if(isset($_POST['question'])&&isset($_POST['rep'])){
 
 			$questionManager = new QuestionManager($bdd);
 			
 			$question = new Question($_POST);
+			$question->setUserid($userid);
+			$question->setQuestion(trim(nl2br($question->question())));
 			$questionManager->add($question);
 			header('Location: ?controler=question&action=list');
 		}else{
@@ -39,6 +44,8 @@ switch ($action) {
 		$questions=$questionManager->getList();
 		$themeManager = new ThemeManager($bdd);
 		$themes = $themeManager ->getList();
+		$userManager = new UserManager($bdd);
+		$users = $userManager->getList();
 		ob_start();
 		require_once 'view/question/listQuestion.php';
 		$content = ob_get_contents();
@@ -64,6 +71,9 @@ switch ($action) {
 		}elseif (isset($_POST['question'])&&isset($_POST['rep'])){
 			$questionManager = new QuestionManager($bdd);
 			$question = new Question($_POST);
+			$question->setQuestion(trim(nl2br($question->question())));
+			$questionOld = $questionManager->get($question->id());
+			$question->setUserid($questionOld->userid());
 			$questionManager->update($question);
 			header('Location: ?controler=question&action=list');
 		}else{

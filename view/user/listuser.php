@@ -1,7 +1,7 @@
 <h1>Liste de tous les utilisateurs</h1>
 <a href="?controler=user&action=add"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un nouvel utilisateur</a>
 <a href="?controler=user&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importer</a>
-<a href="?controler=csv&action=userexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a>
+<a href="?controler=user&action=userexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a>
  <br><br>
  <table class="table table-bordered" style="background-color: white;">
   <tr>

@@ -198,8 +198,35 @@ switch ($action) {
 			require_once 'view/layout/layout.php';
 		}
 	break;
+
+	case 'userexport':
+		$userManager = new UserManager($bdd);
+		$users=$userManager->getList();
 		
-	default:
-		;
+		$chemin = 'web/csv/userexport.csv';
+		$filename = 'userexport.csv';
+		$delimiteur = ';';
+		
+		if($fichier_csv = fopen($chemin,'w+'))
+		{
+			fprintf($fichier_csv, chr(0xEF).chr(0xBB).chr(0xBF));
+		
+			foreach ($users as $user){
+				$userarray[] = $user->login();
+				$userarray[] = $user->pass();
+					
+				fputcsv($fichier_csv, $userarray , $delimiteur);
+				unset($userarray);
+			}
+		
+			fclose($fichier_csv);
+		
+			ob_start();
+			require_once 'view/csv/csvexport.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}
 	break;
+
 }

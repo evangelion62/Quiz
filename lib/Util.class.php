@@ -22,4 +22,23 @@ class Util {
 		}
 		
 	}
+	
+	function getUserId($token,$bdd) {
+		if (!empty($token)){
+			$tokenManager = new TokenManager($bdd);
+	
+			if($tokenbdd = $tokenManager->get($token,'token')){
+	
+				if ($tokenbdd->userip() == $_SERVER['REMOTE_ADDR'] ){
+					$userId = $tokenbdd->userid();
+						
+					return ($userId);
+				}else{
+					header('Location: ?controler=user&action=logoutForced');
+					exit();
+				}
+			}
+		}
+	
+	}
 }

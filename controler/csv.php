@@ -9,6 +9,7 @@ switch ($action) {
 		$questions=$questionManager->getList();
 		
 		$chemin = 'web/csv/questexport.csv';
+		$filename = 'questexport.csv';
 		$delimiteur = ';';
 		
 		if($fichier_csv = fopen($chemin,'w+'))
@@ -16,13 +17,14 @@ switch ($action) {
 		fprintf($fichier_csv, chr(0xEF).chr(0xBB).chr(0xBF));
 		
 		foreach ($questions as $question){
-			$questarray[] = $question->question();
+			$questarray[] = str_replace("\r\n","",$question->question());
 			$questarray[] = $question->rep1();
 			$questarray[] = $question->rep2();
 			$questarray[] = $question->rep3();
 			$questarray[] = $question->rep4();
 			$questarray[] = $question->rep();
 			
+			print_r($questarray);
 			fputcsv($fichier_csv, $questarray , $delimiteur);
 			unset($questarray);
 		}
@@ -67,7 +69,7 @@ switch ($action) {
 					//if file already exists
 					if (file_exists("web/csv/" . $_FILES["file"]["name"])) {
 						echo $_FILES["file"]["name"] . " already exists. ";
-					}elseif ($_FILES["file"]["type"]!='application/octet-stream'){
+					}elseif ($_FILES["file"]["type"]!='application/octet-stream' && $_FILES["file"]["type"]!='text/csv'){
 						echo $_FILES["file"]["name"] . " not csv file. ";
 					}
 					else {

@@ -9,6 +9,7 @@
     <th>Bonne Réponse</th>
     <th>Thème du Quizz</th>
     <th>Suprimer la question</th>
+    <th>Rédacteur</th>
   </tr>
   <?php
   foreach ($questions as $question) {
@@ -24,6 +25,13 @@
     }
     echo'</td>
     <td><a href="?controler=question&action=delete&id='.$question->id().'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer</a></td>
+ 	<td>';
+    foreach ($users as $user) {
+    	if($user->id() == $question->userid()){
+			echo $user->login();
+		}
+    }
+    echo'</td>
   </tr>
     		';
   } 
