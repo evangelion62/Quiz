@@ -2,7 +2,7 @@
 <?php if (!$questfinish){?>
 <a href="?controler=game&action=nextquestion" class="btn btn-success btn-lg" >Reprendre le Quiz !</a>
 <?php }else{?>
-<h1>Quiz Terminer</h1>
+<h1>Quizz Terminé</h1>
 <?php }?>
 <h2><span class="glyphicon glyphicon-education" aria-hidden="true"></span> Score : <?php echo $goodRepCmpt.'/'.$nb_questions;?></h2>
 <?php foreach ($questions as $question){
@@ -30,5 +30,5 @@
 		}
 		
 }?>
-<a href="?controler=game&action=quizzend" class="btn btn-primary btn-lg" >Terminer le Quiz !</a>
+<a href="?controler=game&action=quizzend" class="btn btn-primary btn-lg" >Terminer le Quizz !</a>
 </div>

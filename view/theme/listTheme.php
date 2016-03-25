@@ -1,10 +1,10 @@
- <h1>Listes des themes de Quiz</h1>
- <a href="?controler=theme&action=add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un nouveau theme</a>
+ <h1>Liste des thèmes du jeu</h1>
+ <a href="?controler=theme&action=add"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un nouveau thème</a>
  <table class="table table-bordered" style="background-color: white;">
   <tr>
-    <th>theme</th>
+    <th>thème</th>
     <th>id</th>
-    <th>Supression du theme</th>
+    <th>Supression du thème</th>
   </tr>
   <?php
   foreach ($themes as $theme) {

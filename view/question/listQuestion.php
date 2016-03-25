@@ -1,13 +1,13 @@
-<h1>Liste de toutes les question</h1>
+<h1>Liste de toutes les questions</h1>
 <a href="?controler=question&action=add"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une nouvelle question</a>
-<a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importé</a>
-<a href="?controler=csv&action=questexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporté</a>
+<a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importer</a>
+<a href="?controler=csv&action=questexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a>
  <br><br>
  <table class="table table-bordered" style="background-color: white;">
   <tr>
     <th>Question</th>
     <th>Bonne Réponse</th>
-    <th>Theme du Quiz</th>
+    <th>Thème du Quizz</th>
     <th>Suprimer la question</th>
   </tr>
   <?php
