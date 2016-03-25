@@ -105,8 +105,8 @@ switch ($action) {
 			if ($file = fopen('web/csv/'.$_POST['file'],'r')){
 				$questionManager = new QuestionManager($bdd);
 				$question = new Question(array());
-				while ($ligne = fgetcsv($file,0,';','"')){
-					$question->setQuestion($ligne[0]);
+				while ($ligne = fgetcsv($file,0,'|','"')){
+					$question->setQuestion(stripslashes($ligne[0]));
 					$question->setRep1($ligne[1]);
 					$question->setRep2($ligne[2]);
 					$question->setRep3($ligne[3]);

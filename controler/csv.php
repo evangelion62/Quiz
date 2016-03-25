@@ -10,14 +10,14 @@ switch ($action) {
 		
 		$chemin = 'web/csv/questexport.csv';
 		$filename = 'questexport.csv';
-		$delimiteur = ';';
+		$delimiteur = '|';
 		
 		if($fichier_csv = fopen($chemin,'w+'))
 		{
 		fprintf($fichier_csv, chr(0xEF).chr(0xBB).chr(0xBF));
 		
 		foreach ($questions as $question){
-			$questarray[] = str_replace("\r\n","",$question->question());
+			$questarray[] = addslashes(str_replace("\r\n","",$question->question()));
 			$questarray[] = $question->rep1();
 			$questarray[] = $question->rep2();
 			$questarray[] = $question->rep3();
