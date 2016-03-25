@@ -34,7 +34,7 @@
 	
 	<hr>
 	<footer class="footer">
-        <p>&copy; Ronger Sébastien 2015</p>
+        <p>&copy; Ronger Sébastien 2016</p>
         <!-- debug -->
   	session
 	<pre><?php print_r($_SESSION)?></pre>
