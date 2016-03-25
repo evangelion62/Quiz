@@ -34,7 +34,7 @@
 	
 	<hr>
 	<footer class="footer">
-        <p>&copy; Ronger Sébastien 2016</p>
+        <p>&copy; <a href="https://fr.linkedin.com/in/sébastien-ronger-1080a18a">Ronger Sébastien 2016</a></p>
         <!-- debug -->
   	session
 	<pre><?php print_r($_SESSION)?></pre>
