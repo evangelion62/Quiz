@@ -21,7 +21,6 @@ switch ($action) {
 			
 			$question = new Question($_POST);
 			$question->setUserid($userid);
-			$question->setQuestion(trim(nl2br($question->question())));
 			$questionManager->add($question);
 			header('Location: ?controler=question&action=list');
 		}else{
@@ -71,7 +70,6 @@ switch ($action) {
 		}elseif (isset($_POST['question'])&&isset($_POST['rep'])){
 			$questionManager = new QuestionManager($bdd);
 			$question = new Question($_POST);
-			$question->setQuestion(trim(nl2br($question->question())));
 			$questionOld = $questionManager->get($question->id());
 			$question->setUserid($questionOld->userid());
 			$questionManager->update($question);
@@ -112,6 +110,7 @@ switch ($action) {
 					$question->setRep3($ligne[3]);
 					$question->setRep4($ligne[4]);
 					$question->setRep($ligne[5]);
+					$question->setUserid($ligne[6]);
 					$questionManager->add($question);
 				}
 				header('Location: ?controler=question&action=list');

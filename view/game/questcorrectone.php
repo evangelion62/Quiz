@@ -29,3 +29,4 @@
 <?php }else{?>
 <h1>Quiz Terminer</h1>
 <?php }?>
+</div>

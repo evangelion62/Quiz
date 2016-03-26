@@ -23,6 +23,8 @@ switch ($action) {
 			$questarray[] = $question->rep3();
 			$questarray[] = $question->rep4();
 			$questarray[] = $question->rep();
+			$questarray[] = $question->userid();
+				
 			
 			print_r($questarray);
 			fputcsv($fichier_csv, $questarray , $delimiteur);
