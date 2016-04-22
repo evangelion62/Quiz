@@ -132,9 +132,20 @@ switch ($action) {
 	break;
 	
 	case 'purge':
-		$questionManager = new QuestionManager($bdd);
-		$questionManager->purge();
-		header('Location: ?controler=question&action=list');
+		if (!empty($_GET['valid'])){
+			if ($_GET['valid']=='OK'){
+				$questionManager = new QuestionManager($bdd);
+				$questionManager->purge();
+				header('Location: ?controler=question&action=list');
+			}
+			header('Location: ?controler=question&action=list');
+		}else{
+			ob_start();
+			require_once 'view/question/valid.php';
+			$content = ob_get_contents();
+			ob_end_clean();
+			require_once 'view/layout/layout.php';
+		}
 	break;
 	
 	case 'exportbythem':

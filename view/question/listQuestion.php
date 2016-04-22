@@ -2,7 +2,9 @@
 <a href="?controler=question&action=add"> <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter une nouvelle question</a>
 <a href="?controler=question&action=csvImport"> <span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Importer</a>
 <a href="?controler=csv&action=questexport"> <span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a>
- <br><br>
+<a href="?controler=question&action=purge"> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer Les Questions</a>
+
+<br><br>
  <table class="table table-bordered" style="background-color: white;">
   <tr>
     <th>Question</th>
