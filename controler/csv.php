@@ -25,8 +25,6 @@ switch ($action) {
 			$questarray[] = $question->rep();
 			$questarray[] = $question->userid();
 				
-			
-			print_r($questarray);
 			fputcsv($fichier_csv, $questarray , $delimiteur);
 			unset($questarray);
 		}
