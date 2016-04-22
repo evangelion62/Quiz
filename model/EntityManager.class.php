@@ -215,4 +215,12 @@ abstract class EntityManager {
 			
 		}
 	}
+	
+	public function purge() {
+		$entityName = $this->_entityName;
+		$entityProperties = $entityName::$_properties;
+		foreach ($entityProperties as $table => $properties) {
+			$this->_db->exec('TRUNCATE TABLE `'.$table.'`');
+		}
+	}
 }
