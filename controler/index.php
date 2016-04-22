@@ -4,6 +4,7 @@ switch ($action) {
 		$themeManager = new ThemeManager($bdd);
 		$themes = $themeManager->getList();
 		
+		$pageTitle="page d'acceuil";
 		ob_start();
 		require_once 'view/home/index.php';
 		$content = ob_get_contents();
