@@ -99,7 +99,7 @@ switch ($action) {
 		$adminLvlThisControler=4;
 		require_once 'lib/checkRights.php';
 		
-		if (isset($_POST['file'])){
+		if (isset($_POST['file']) && !empty($_POST['theme'])){
 			if ($file = fopen('web/csv/'.$_POST['file'],'r')){
 				$questionManager = new QuestionManager($bdd);
 				$question = new Question(array());
@@ -110,6 +110,7 @@ switch ($action) {
 					$question->setRep3($ligne[3]);
 					$question->setRep4($ligne[4]);
 					$question->setRep($ligne[5]);
+					$question->setThemeid($_POST['theme']);
 					$question->setUserid($ligne[6]);
 					$questionManager->add($question);
 				}
@@ -119,6 +120,9 @@ switch ($action) {
 			$directory = 'web/csv/';
 			$files = array_diff(scandir($directory), array('..', '.'));
 			
+			$themeManager = new ThemeManager($bdd);
+			$themes = $themeManager->getList();
+			
 			ob_start();
 			require_once 'view/question/csvimport.php';
 			$content = ob_get_contents();
@@ -126,6 +130,53 @@ switch ($action) {
 			require_once 'view/layout/layout.php';
 		}
 	break;
+	
+	case 'purge':
+		$questionManager = new QuestionManager($bdd);
+		$questionManager->purge();
+		header('Location: ?controler=question&action=list');
+	break;
+	
+	case 'exportbythem':
+		if (!empty($_GET['id'])){
+			$questionManager = new QuestionManager($bdd);
+			$questions=$questionManager->getList();
+			
+			$chemin = 'web/csv/questexport.csv';
+			$filename = 'questexport.csv';
+			$delimiteur = '|';
+			
+			if($fichier_csv = fopen($chemin,'w+'))
+			{
+				fprintf($fichier_csv, chr(0xEF).chr(0xBB).chr(0xBF));
+			
+				foreach ($questions as $question){
+					if ($question->themeid()==($_GET['id'])){
+						
+						$questarray[] = addslashes(str_replace("\r\n","",$question->question()));
+						$questarray[] = $question->rep1();
+						$questarray[] = $question->rep2();
+						$questarray[] = $question->rep3();
+						$questarray[] = $question->rep4();
+						$questarray[] = $question->rep();
+						$questarray[] = $question->userid();
+				
+						fputcsv($fichier_csv, $questarray , $delimiteur);
+						unset($questarray);
+					}
+				}
+			
+				fclose($fichier_csv);
+			
+				ob_start();
+				require_once 'view/csv/csvexport.php';
+				$content = ob_get_contents();
+				ob_end_clean();
+				require_once 'view/layout/layout.php';
+			}
+		}
+	break;
+	
 	default:
 		header('Location: ?controler=question&action=list');
 	break;

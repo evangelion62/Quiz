@@ -10,6 +10,14 @@
 	</select>
 	 <p class="help-block">Selectioner votre fichier.</p>
 </div>
+<div class="form-group">
+	<select id="theme" name="theme">
+	<?php foreach ($themes as $theme) {
+		echo '<option value="'.$theme->id().'">'.$theme->theme().'</option>';
+	}?>
+	</select>
+	 <p class="help-block">Selectioner Le thème de destination.</p>
+</div>
 <input class="btn btn-default" type="submit" value="Importer">
 </form>
 </div>
