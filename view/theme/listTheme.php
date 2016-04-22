@@ -5,6 +5,7 @@
     <th>thème</th>
     <th>id</th>
     <th>Supression du thème</th>
+    <th>Exporter</th>
   </tr>
   <?php
   foreach ($themes as $theme) {
@@ -12,9 +13,8 @@
   <tr>
     <td><a href="?controler=theme&action=update&id='.$theme->id().'"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> '.$theme->theme().'</a></td>
     <td>'.$theme->id().'</td>
-    <td><a href="?controler=theme&action=delete&id='.$theme->id().'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer</a>
-    	<a href="?controler=question&action=exportbythem&id='.$theme->id().'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a>
-    		</td>
+    <td><a href="?controler=theme&action=delete&id='.$theme->id().'"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Suprimer</a></td>
+    <td><a href="?controler=question&action=exportbythem&id='.$theme->id().'"><span class="glyphicon glyphicon-download" aria-hidden="true"></span> Exporter</a></td>
   </tr>
     		';
   } 
